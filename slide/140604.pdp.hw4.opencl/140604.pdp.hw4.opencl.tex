@@ -1,0 +1,138 @@
+\documentclass[12pt]{beamer}
+\usepackage{graphicx}
+\usepackage{color}
+\usetheme{Amsterdam}
+
+\title{OpenCL  Homework}
+\author{Wen-Chieh Wu}
+\date{June 4, 2014}
+
+\begin{document}
+
+\maketitle
+
+\begin{frame}
+  \frametitle{Examples}
+  There are 3 examples for your references, please copy it by command\\
+  \$ cp -r /tmp/opencl.example .
+  \begin{itemize}
+    {\item hello.world}
+    {\item local.max}
+    {\item vector.add}
+  \end{itemize}
+  The programs can be compiled by using command:\\
+  \$ make\\
+  The programs can be executed by using command:\\
+  \$ make run
+\end{frame}
+
+\begin{frame}
+  \frametitle{Examples}
+  \begin{itemize}
+  {\item How to compile a opencl program?}\\
+  \$ gcc main.c -o main -lOpenCL
+  {\item How to execute the program?}\\
+  \$ ./main
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \begin{center}
+    {\Large Final Homework}
+  \end{center}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Goal}
+  \begin{center}
+  Implementing Median Filter in OpenCL.
+  \end{center}
+\end{frame}
+
+\begin{frame}
+  \frametitle{What is Median Filter?}
+  In signal processing, it is often desirable to be able to perform some kind of noise reduction on an image or signal. The median filter is a nonlinear digital filtering technique, often used to remove noise. 
+  \begin{center}
+    \includegraphics{img/medianfilter.png}
+  \end{center}
+\end{frame}
+
+\begin{frame}
+  \frametitle{How does it work?}
+  Find the median value in the 3x3 window
+  \begin{table}
+  \begin{tabular}{|c|c|c|} \hline
+    1 & 2 & 3 \\ \hline
+    4 & 5 & 6 \\ \hline
+    7 & 8 & 9 \\ \hline
+  \end{tabular}
+  \begin{tabular}{|c|c|c|} \hline
+    4 & 4 & 5 \\ \hline
+    5 & 5 & 6 \\ \hline
+    7 & 7 & 8 \\ \hline
+  \end{tabular}
+  \end{table}
+  Ex: 1 2 {\bf 4} 5\\
+  Ex: 1 2 3 {\bf 4} 5 6\\
+  Ex: 1 2 3 4 {\bf 5} 6 7 8 9
+\end{frame}
+
+\begin{frame}
+  \frametitle{Input}
+  A NxN matrix from binary file, 5 inputs total, and 2 will give you in advance with answer.
+  \begin{itemize}
+    {\item input.10.dat(1024x1024): 0.465 s}
+    {\item input.11.dat(2048x2048): 1.851 s}
+    {\item input.12.dat(4096x4096): 7.348 s}
+    {\item input.13.dat(8192x8192): 29.32 s}
+    {\item input.14.dat(16384x16348): 122.09 s}
+  \end{itemize}
+  Program execution format:\\
+  \$ ./[program name] [inputfile] [N]\\
+  EX:\\
+  \$ ./medianfilter input.10.dat 10
+\end{frame}
+
+\begin{frame}
+  \frametitle{Output}
+  NxN matrix after median filtering to stdout in plaintext, the matrix is in single line.\\
+  Input:\\
+  1 2 3 4 5 6 7 8 9\\
+  Output:\\
+  4 4 5 5 5 6 7 7 8
+\end{frame}
+
+\begin{frame}
+  \frametitle{Grading}
+  If your answer is right, you will get 80\% of the grade, and you will get another 20\% if the execution time is short enough:
+  \begin{itemize}
+    {\item input.10.dat: 2.37 s}
+    {\item input.11.dat: 3.05 s}
+    {\item input.12.dat: 4.41 s}
+    {\item input.13.dat: 9.52 s}
+    {\item input.14.dat: 32.49 s}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Upload}
+  Please upload your program to CEIBA, in the zip file contain a folder of your id and the program main.c, a readme.txt telling me how to compile and other files.\\
+  EX:\\
+  \begin{itemize}
+    {\item r01922003}
+          \begin{itemize}
+            {\item main.c}
+            {\item readme.txt}
+            {\item ...}
+          \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Note}
+  \begin{itemize}
+    {\item Deadline: 6/25 14:00}
+  \end{itemize}
+\end{frame}
+
+\end{document}
